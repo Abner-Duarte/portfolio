@@ -46,7 +46,7 @@ def recortar(entrada: str, saida: str) -> None:
 
     margem_topo = int(largura_cabeca * 0.12)
     y0 = max(0, topo - margem_topo)
-    y1 = max(y0 + 1, ombro - int(img.height * 0.02))
+    y1 = max(y0 + 1, ombro - int(img.height * 0.06))
     lado = y1 - y0
     lado = min(lado, img.width)
     x_ini = min(max(0, centro_x - lado // 2), img.width - lado)
