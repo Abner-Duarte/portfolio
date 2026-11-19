@@ -85,6 +85,21 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/abner-evandro-duarte-79352523a/',
     github: 'https://github.com/Abner-Duarte',
   },
+  education: {
+    degree: {
+      pt: 'Tecnólogo em Informática para Negócios',
+      en: 'Associate Degree in Information Technology for Business',
+    } as Localized,
+    school: {
+      pt: 'FATEC · Faculdade de Tecnologia do Estado de São Paulo, São José do Rio Preto',
+      en: 'FATEC · São Paulo State Technological College, São José do Rio Preto',
+    } as Localized,
+    year: { pt: 'Concluído em 2026', en: 'Completed 2026' } as Localized,
+    thesis: {
+      pt: 'TCC sobre mecanismos de desligamento automático em IA.',
+      en: 'Thesis on automatic shutdown mechanisms in AI.',
+    } as Localized,
+  },
   cv: {
     pt: '/cv/Abner_Evandro_Duarte_Curriculo_PT.pdf',
     en: '/cv/Abner_Evandro_Duarte_Resume_EN.pdf',
