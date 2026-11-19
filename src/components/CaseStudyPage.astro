@@ -11,6 +11,7 @@ interface Props {
 const { study: s, lang } = Astro.props;
 const dict = t(lang);
 const other: Lang = lang === 'pt' ? 'en' : 'pt';
+const path = `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/${s.slug}`;
 const altPath = `${base(other)}/${other === 'pt' ? 'projetos' : 'projects'}/${s.slug}`;
 const homeProjects = `${base(lang)}/#projetos`;
 const sections = [
@@ -20,7 +21,7 @@ const sections = [
 ];
 ---
 
-<Base lang={lang} title={`${s.title[lang]} · Abner Duarte`} description={s.lead[lang]} altPath={altPath}>
+<Base lang={lang} title={`${s.title[lang]} · ${dict.caseStudy.label} · Abner Duarte`} description={s.lead[lang]} path={path} altPath={altPath}>
   <article class="case">
     <header class="hero">
       <div class="container narrow">

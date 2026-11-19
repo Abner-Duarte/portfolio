@@ -3,17 +3,37 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { t, type Lang } from '../i18n';
+import { profile } from '../data/profile';
 
 interface Props {
   lang: Lang;
   title: string;
   description: string;
+  /** Caminho desta página, ex.: '/', '/en/', '/projetos/zapsync'. */
+  path: string;
   /** Caminho da mesma página no outro idioma. */
   altPath: string;
 }
 
-const { lang, title, description, altPath } = Astro.props;
+const { lang, title, description, path, altPath } = Astro.props;
 const dict = t(lang);
+const site = Astro.site!;
+const url = (p: string) => new URL(p, site).href;
+const ptPath = lang === 'pt' ? path : altPath;
+const enPath = lang === 'en' ? path : altPath;
+const ogImage = url('/og.png');
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: profile.role[lang],
+  url: url(lang === 'pt' ? '/' : '/en/'),
+  image: ogImage,
+  email: `mailto:${profile.contact.email}`,
+  address: { '@type': 'PostalAddress', addressLocality: 'São José do Rio Preto', addressRegion: 'SP', addressCountry: 'BR' },
+  sameAs: [profile.contact.linkedin, profile.contact.github],
+};
 ---
 
 <!doctype html>
@@ -23,7 +43,29 @@ const dict = t(lang);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={url(path)} />
+    <link rel="alternate" hreflang="pt-BR" href={url(ptPath)} />
+    <link rel="alternate" hreflang="en" href={url(enPath)} />
+    <link rel="alternate" hreflang="x-default" href={url(ptPath)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#0b7a52" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Abner Duarte" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url(path)} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={dict.ogLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <script is:inline>
       (function () {
         var root = document.documentElement;

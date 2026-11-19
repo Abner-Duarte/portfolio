@@ -41,6 +41,7 @@ export const en: Dict = {
     contactIntro: 'Have a role or a project? WhatsApp is the fastest way to reach me.',
   },
   caseStudy: {
+    label: 'Case study',
     back: '← Back to projects',
     problem: 'Problem',
     built: 'What I built',

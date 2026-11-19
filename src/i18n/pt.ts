@@ -39,6 +39,7 @@ export const pt = {
     contactIntro: 'Tem uma vaga ou um projeto? O jeito mais rápido é o WhatsApp.',
   },
   caseStudy: {
+    label: 'Estudo de caso',
     back: '← Voltar para os projetos',
     problem: 'Problema',
     built: 'O que fiz',

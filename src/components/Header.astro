@@ -38,8 +38,8 @@ const links = [
     </nav>
 
     <div class="tools">
-      <a class="lang" href={altPath} hreflang={t(other).htmlLang} lang={t(other).htmlLang} aria-label={dict.langSwitchLabel}>
-        {other.toUpperCase()}
+      <a class="lang" href={altPath} hreflang={t(other).htmlLang} title={dict.langSwitchLabel}>
+        {other.toUpperCase()}<span class="visually-hidden"> · {dict.langSwitchLabel}</span>
       </a>
       <button class="icon-btn" type="button" data-theme-toggle aria-label={dict.themeToggle} title={dict.themeToggle}>
         <svg class="sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
