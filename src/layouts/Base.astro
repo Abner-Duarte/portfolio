@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Caminho da mesma página no outro idioma. */
+  altPath: string;
+}
+
+const { lang, title, description } = Astro.props;
+const dict = t(lang);
+---
+
+<!doctype html>
+<html lang={dict.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">{dict.skipToContent}</a>
+    <main id="conteudo">
+      <slot />
+    </main>
+  </body>
+</html>
