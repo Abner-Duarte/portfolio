@@ -1,7 +1,10 @@
 import type { Link, Localized, Proof } from './types';
+import photo from '../assets/foto.jpg';
+import zapsyncSite from '../assets/projects/zapsync/site-desktop.png';
 
 export const profile = {
   name: 'Abner Evandro Duarte',
+  photo,
   role: { pt: 'Engenheiro de IA · Desenvolvedor Backend', en: 'AI Engineer · Backend Developer' } as Localized,
   tagline: {
     pt: 'Coloco LLMs em produção: RAG, saída estruturada, guardrails, evals e custo medido em cada chamada. Fundei e opero sozinho o ZapSync, atendimento com IA no WhatsApp.',
@@ -37,6 +40,7 @@ export const profile = {
   ] as Proof[],
   featured: {
     slug: 'zapsync',
+    image: zapsyncSite,
     title: { pt: 'ZapSync · Atendimento com IA no WhatsApp', en: 'ZapSync · AI customer service on WhatsApp' } as Localized,
     summary: {
       pt: 'SaaS multi-tenant que eu projetei, desenvolvi e opero sozinho. A IA atende os clientes de restaurantes, pizzarias, barbearias e clínicas, fecha pedidos, marca horários e passa para um humano quando precisa.',

@@ -1,4 +1,10 @@
 import type { Project } from './types';
+import dataPilot from '../assets/projects/data-pilot/painel.png';
+import fraude from '../assets/projects/deteccao-fraude/07_shap_beeswarm.png';
+import qaVerzel from '../assets/projects/qa-verzel/automacao-relatorio-playwright.png';
+import barbearia from '../assets/projects/barbearia/logotipo-da-barbearia.jpg';
+import fatecFighters from '../assets/projects/fatec-fighters/background.png';
+import jogosPython from '../assets/projects/jogos-python/coletor.png';
 
 const gh = (repo: string) => `https://github.com/Abner-Duarte/${repo}`;
 const code = { pt: 'Código no GitHub', en: 'Code on GitHub' };
@@ -7,6 +13,7 @@ const showcase = { pt: 'Vitrine no GitHub', en: 'Showcase on GitHub' };
 export const projects: Project[] = [
   {
     slug: 'data-pilot',
+    image: dataPilot,
     title: { pt: 'Data Pilot', en: 'Data Pilot' },
     summary: {
       pt: 'Painel de vendas que conversa. O LLM escolhe qual função Python chamar (tool calling) e o Python calcula, então o modelo não inventa números. Testes garantem que o chat e o painel mostram o mesmo valor.',
@@ -20,6 +27,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'deteccao-fraude',
+    image: fraude,
     title: { pt: 'Detecção de fraude em cartão', en: 'Credit card fraud detection' },
     summary: {
       pt: '284 mil transações com 0,17% de fraude. Comparei modelos por precisão, recall e PR-AUC, ajustei o limiar e expliquei as decisões com SHAP.',
@@ -46,6 +54,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'qa-verzel',
+    image: qaVerzel,
     title: { pt: 'Teste técnico de QA (Verzel)', en: 'QA take-home assignment (Verzel)' },
     summary: {
       pt: 'Plano, casos em Gherkin, testes manuais e exploratórios e automação com Playwright (interface em Chrome, Firefox, Safari e mobile, mais testes de API) rodando no GitHub Actions.',
@@ -150,6 +159,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'jogos-python',
+    image: jogosPython,
     title: { pt: 'Jogos em Python', en: 'Python games' },
     summary: {
       pt: 'Dois jogos em Pygame Zero com código comentado para quem está aprendendo, com toda a arte e todos os sons gerados por código, e três scripts de terminal (estoque, comissão e juros).',
@@ -203,6 +213,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'barbearia',
+    image: barbearia,
     title: { pt: 'Barbearia do Pra', en: 'Barbearia do Pra' },
     summary: {
       pt: 'Projeto em equipe na Fatec: sistema web full stack de agendamento com painel administrativo de agenda, profissionais, serviços e horários.',
@@ -215,6 +226,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'fatec-fighters',
+    image: fatecFighters,
     title: { pt: 'Fatec Fighters', en: 'Fatec Fighters' },
     summary: {
       pt: 'Projeto em equipe na Fatec: jogo de luta 2D para dois jogadores com login, placar e ranking no PostgreSQL. Evoluiu de um protótipo numa classe única para telas separadas com camada DAO e consultas parametrizadas.',

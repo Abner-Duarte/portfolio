@@ -132,3 +132,22 @@ describe('conteúdo geral', () => {
     for (const c of certifications) expectLocalized(c.name, 'cert');
   });
 });
+
+describe('imagens e arquivos', () => {
+  it('a foto do perfil é quadrada', () => {
+    expect(profile.photo.width).toBe(profile.photo.height);
+  });
+
+  it('os projetos com print disponível têm imagem', () => {
+    const withImage = ['data-pilot', 'deteccao-fraude', 'qa-verzel', 'barbearia', 'fatec-fighters', 'jogos-python'];
+    for (const slug of withImage) {
+      expect(projects.find((p) => p.slug === slug)?.image, slug).toBeDefined();
+    }
+  });
+
+  it('os dois currículos existem em public/cv', async () => {
+    const { existsSync } = await import('node:fs');
+    expect(existsSync('public' + profile.cv.pt)).toBe(true);
+    expect(existsSync('public' + profile.cv.en)).toBe(true);
+  });
+});
