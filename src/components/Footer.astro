@@ -1,0 +1,50 @@
+---
+import { t, type Lang } from '../i18n';
+import { profile } from '../data/profile';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container row">
+    <p>© {year} {profile.name}. {dict.footer}</p>
+    <ul>
+      <li><a href={profile.contact.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href={profile.contact.github} target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href={profile.contact.whatsapp} target="_blank" rel="noopener">WhatsApp</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding-block: var(--space-6);
+    color: var(--muted);
+    font-size: var(--step--1);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    justify-content: space-between;
+    align-items: center;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-4);
+  }
+  a {
+    color: var(--muted);
+    font-weight: 600;
+  }
+  a:hover {
+    color: var(--accent);
+  }
+</style>

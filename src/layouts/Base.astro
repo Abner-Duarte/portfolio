@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { t, type Lang } from '../i18n';
 
 interface Props {
@@ -10,7 +12,7 @@ interface Props {
   altPath: string;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, altPath } = Astro.props;
 const dict = t(lang);
 ---
 
@@ -22,11 +24,25 @@ const dict = t(lang);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add('js');
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'dark' || saved === 'light') root.dataset.theme = saved;
+        } catch (e) {
+          /* sem armazenamento: segue o tema do sistema */
+        }
+      })();
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#conteudo">{dict.skipToContent}</a>
+    <Header lang={lang} altPath={altPath} />
     <main id="conteudo">
       <slot />
     </main>
+    <Footer lang={lang} />
   </body>
 </html>
