@@ -24,6 +24,9 @@ const dict = t(lang);
       ))
     }
   </ol>
+  <p class="note">
+    <a href="https://github.com/Abner-Duarte/portfolio-python" target="_blank" rel="noopener">{dict.sections.journeyNote}</a>
+  </p>
 </Section>
 
 <style>
@@ -74,7 +77,14 @@ const dict = t(lang);
   h3 a {
     color: inherit;
   }
-  p {
+  .note {
+    margin-top: var(--space-6);
+    font-size: var(--step--1);
+  }
+  .note a {
+    color: var(--muted);
+  }
+  .step p {
     margin-top: var(--space-2);
     color: var(--muted);
     max-width: 70ch;

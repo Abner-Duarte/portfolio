@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  lang="pt"
+  title="Página não encontrada · Abner Duarte"
+  description="Esta página não existe. Volte para o portfólio de Abner Duarte, engenheiro de IA."
+  path="/404"
+  altPath="/en/"
+>
+  <section class="nf">
+    <div class="container">
+      <p class="code">404</p>
+      <h1>Página não encontrada</h1>
+      <p class="en" lang="en">Page not found</p>
+      <p class="text">O endereço pode ter mudado ou estar digitado errado.</p>
+      <div class="actions">
+        <a class="btn primary" href="/">Voltar para o início</a>
+        <a class="btn ghost" href="/en/" lang="en">Go to the English version</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    padding-block: var(--space-8);
+    min-height: 60vh;
+    display: grid;
+    align-items: center;
+  }
+  .code {
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: var(--step-2);
+  }
+  h1 {
+    font-size: var(--step-3);
+    margin-top: var(--space-2);
+  }
+  .en {
+    color: var(--muted);
+    margin-top: var(--space-2);
+  }
+  .text {
+    margin-top: var(--space-5);
+    color: var(--muted);
+  }
+  .actions {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+</style>

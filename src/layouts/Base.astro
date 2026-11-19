@@ -21,7 +21,7 @@ const site = Astro.site!;
 const url = (p: string) => new URL(p, site).href;
 const ptPath = lang === 'pt' ? path : altPath;
 const enPath = lang === 'en' ? path : altPath;
-const ogImage = url('/og.png');
+const ogImage = url(lang === 'pt' ? '/og.png' : '/og-en.png');
 
 const person = {
   '@context': 'https://schema.org',

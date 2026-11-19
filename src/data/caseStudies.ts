@@ -84,8 +84,8 @@ export const caseStudies: CaseStudy[] = [
     ],
     results: [
       {
-        pt: '97% de acerto (168 de 174) no benchmark, 1,6 s de resposta típica, 2,5 s no pior caso e US$ 5,45 por 1.000 respostas.',
-        en: '97% accuracy (168 of 174) on the benchmark, 1.6 s typical response, 2.5 s at p95 and US$ 5.45 per 1,000 replies.',
+        pt: '97% de acerto (168 de 174) no benchmark, 1,6 s de resposta típica, 2,5 s no pior caso (p95) e US$ 5,45 por 1.000 respostas.',
+        en: '97% accuracy (168 of 174) on the benchmark, 1.6 s typical response, 2.5 s worst case (p95) and US$ 5.45 per 1,000 replies.',
       },
       {
         pt: 'A categoria segurança foi de 89% para 100% depois da correção da falha de prompt injection que o benchmark encontrou.',

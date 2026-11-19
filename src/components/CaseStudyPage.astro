@@ -11,8 +11,8 @@ interface Props {
 const { study: s, lang } = Astro.props;
 const dict = t(lang);
 const other: Lang = lang === 'pt' ? 'en' : 'pt';
-const path = `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/${s.slug}`;
-const altPath = `${base(other)}/${other === 'pt' ? 'projetos' : 'projects'}/${s.slug}`;
+const path = `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/${s.slug}/`;
+const altPath = `${base(other)}/${other === 'pt' ? 'projetos' : 'projects'}/${s.slug}/`;
 const homeProjects = `${base(lang)}/#projetos`;
 const sections = [
   { title: dict.caseStudy.built, items: s.built },

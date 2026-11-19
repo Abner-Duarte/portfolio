@@ -151,3 +151,14 @@ describe('imagens e arquivos', () => {
     expect(existsSync('public' + profile.cv.en)).toBe(true);
   });
 });
+
+describe('estudos de caso', () => {
+  it('o ZapSync descreve o tempo de resposta do mesmo jeito nos dois idiomas', async () => {
+    const { caseStudies } = await import('../src/data/caseStudies');
+    const zap = caseStudies.find((c) => c.slug === 'zapsync')!;
+    const pt = zap.results.map((r) => r.pt).join(' ');
+    const en = zap.results.map((r) => r.en).join(' ');
+    expect(pt).toContain('2,5 s no pior caso (p95)');
+    expect(en).toContain('2.5 s worst case (p95)');
+  });
+});

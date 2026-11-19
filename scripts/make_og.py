@@ -1,4 +1,4 @@
-"""Gera public/og.png (1200x630), a imagem de compartilhamento do site.
+"""Gera public/og.png e public/og-en.png (1200x630), as imagens de compartilhamento.
 
 Uso: python scripts/make_og.py
 Usa a foto recortada (src/assets/foto.jpg) e as fontes Segoe UI do Windows.
@@ -21,7 +21,13 @@ def fonte(nome: str, tamanho: int) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(str(FONTES / nome), tamanho)
 
 
-def main() -> None:
+TEXTOS = {
+    "og.png": ("Engenheiro de IA · Desenvolvedor Backend", "LLMs em produção: RAG · evals · guardrails · MCP"),
+    "og-en.png": ("AI Engineer · Backend Developer", "LLMs in production: RAG · evals · guardrails · MCP"),
+}
+
+
+def gerar(arquivo: str, cargo: str, linha: str) -> None:
     img = Image.new("RGB", (W, H), FUNDO)
     d = ImageDraw.Draw(img)
 
@@ -39,13 +45,18 @@ def main() -> None:
     d.rounded_rectangle((80, 120, 132, 172), radius=14, fill=VERDE)
     d.text((106, 146), "AD", font=fonte("segoeuib.ttf", 24), fill=FUNDO, anchor="mm")
     d.text((80, 230), "Abner Evandro Duarte", font=fonte("segoeuib.ttf", 60), fill=TEXTO)
-    d.text((80, 315), "Engenheiro de IA · LLM em produção", font=fonte("segoeui.ttf", 36), fill=VERDE)
-    d.text((80, 380), "RAG · evals · guardrails · MCP", font=fonte("segoeui.ttf", 30), fill=SUAVE)
+    d.text((80, 315), cargo, font=fonte("segoeui.ttf", 36), fill=VERDE)
+    d.text((80, 380), linha, font=fonte("segoeui.ttf", 30), fill=SUAVE)
     d.text((80, 520), "abner-duarte.vercel.app", font=fonte("segoeuib.ttf", 26), fill=SUAVE)
 
-    saida = RAIZ / "public/og.png"
+    saida = RAIZ / "public" / arquivo
     img.save(saida, optimize=True)
     print(saida)
+
+
+def main() -> None:
+    for arquivo, (cargo, linha) in TEXTOS.items():
+        gerar(arquivo, cargo, linha)
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ interface Props {
 const { lang } = Astro.props;
 const dict = t(lang);
 const f = profile.featured;
-const caseHref = `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/zapsync`;
+const caseHref = `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/zapsync/`;
 ---
 
 <Section id="zapsync" title={dict.sections.featured} tone="soft">

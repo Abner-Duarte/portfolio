@@ -2,6 +2,7 @@
 import { t, type Lang } from '../i18n';
 import { services } from '../data/services';
 import { projects } from '../data/projects';
+import { profile } from '../data/profile';
 import Section from './Section.astro';
 
 interface Props {
@@ -44,7 +45,7 @@ function proofHref(slug: string): string {
     }
   </ol>
   <div class="cta">
-    <a class="btn primary" href="#contato">{dict.hero.ctaContact}</a>
+    <a class="btn primary" href={profile.contact.whatsapp} target="_blank" rel="noopener">{dict.sections.servicesCta}</a>
   </div>
 </Section>
 

@@ -4,8 +4,8 @@ import { existsSync, readFileSync } from 'node:fs';
 
 const PAGES: [string, string][] = [
   ['/', '/en/'],
-  ['/projetos/zapsync', '/en/projects/zapsync'],
-  ['/projetos/data-pilot', '/en/projects/data-pilot'],
+  ['/projetos/zapsync/', '/en/projects/zapsync/'],
+  ['/projetos/data-pilot/', '/en/projects/data-pilot/'],
 ];
 const SITE = 'https://abner-duarte.vercel.app';
 

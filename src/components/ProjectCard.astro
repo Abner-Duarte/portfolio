@@ -9,7 +9,7 @@ interface Props {
 }
 const { project: p, lang } = Astro.props;
 const dict = t(lang);
-const caseHref = p.caseStudy ? `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/${p.slug}` : undefined;
+const caseHref = p.caseStudy ? `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/${p.slug}/` : undefined;
 ---
 
 <article class="card" id={`projeto-${p.slug}`} data-slug={p.slug}>
@@ -105,8 +105,7 @@ const caseHref = p.caseStudy ? `${base(lang)}/${lang === 'pt' ? 'projetos' : 'pr
   .kicker {
     font-family: var(--mono);
     font-size: 0.78rem;
-    color: var(--accent);
-    opacity: 0.85;
+    color: var(--accent-strong);
   }
   .body {
     display: flex;

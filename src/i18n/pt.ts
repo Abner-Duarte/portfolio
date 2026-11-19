@@ -36,6 +36,8 @@ export const pt = {
     stack: 'Stack',
     certs: 'Certificações e cursos',
     contact: 'Vamos conversar',
+    journeyNote: 'Nas horas vagas, faço jogos em Python para quem está aprendendo, com toda a arte e todos os sons gerados por código.',
+    servicesCta: 'Tem um projeto? Me chama no WhatsApp',
     contactIntro: 'Tem uma vaga ou um projeto? O jeito mais rápido é o WhatsApp.',
   },
   caseStudy: {
