@@ -40,6 +40,14 @@ export const en: Dict = {
     contact: "Let's talk",
     contactIntro: 'Have a role or a project? WhatsApp is the fastest way to reach me.',
   },
+  caseStudy: {
+    back: '← Back to projects',
+    problem: 'Problem',
+    built: 'What I built',
+    decisions: 'Decisions',
+    results: 'Results',
+    gallery: 'Screens',
+  },
   labels: {
     caseStudy: 'Read the case study',
     proof: 'Proof',

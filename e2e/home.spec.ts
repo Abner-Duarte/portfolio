@@ -69,7 +69,7 @@ for (const lang of ['pt', 'en'] as const) {
       await page.evaluate(async () => {
         const imgs = Array.from(document.images);
         imgs.forEach((i) => (i.loading = 'eager'));
-        await Promise.all(imgs.map((i) => (i.complete ? null : new Promise((r) => i.addEventListener('load', r, { once: true }) || i.addEventListener('error', r, { once: true })))));
+        await Promise.all(imgs.map((i) => (i.complete ? null : new Promise((r) => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); }))));
       });
       const broken = await page.locator('img').evaluateAll((imgs) =>
         (imgs as HTMLImageElement[]).filter((i) => i.naturalWidth === 0).map((i) => i.src),

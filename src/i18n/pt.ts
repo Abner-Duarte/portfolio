@@ -38,6 +38,14 @@ export const pt = {
     contact: 'Vamos conversar',
     contactIntro: 'Tem uma vaga ou um projeto? O jeito mais rápido é o WhatsApp.',
   },
+  caseStudy: {
+    back: '← Voltar para os projetos',
+    problem: 'Problema',
+    built: 'O que fiz',
+    decisions: 'Decisões',
+    results: 'Resultados',
+    gallery: 'Telas',
+  },
   labels: {
     caseStudy: 'Ver estudo de caso',
     proof: 'Prova',
