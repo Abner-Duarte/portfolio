@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+import { t, base, type Lang } from '../i18n';
+import type { Project } from '../data/types';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+}
+const { project: p, lang } = Astro.props;
+const dict = t(lang);
+const caseHref = p.caseStudy ? `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/${p.slug}` : undefined;
+---
+
+<article class="card" id={`projeto-${p.slug}`} data-slug={p.slug}>
+  <div class="media">
+    {
+      p.image ? (
+        <Image src={p.image} alt="" widths={[360, 640]} sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 100vw" />
+      ) : (
+        <div class="fallback" data-fallback aria-hidden="true">
+          <span class="kicker">{p.stack[0]}</span>
+          <span class="poster">{p.title[lang]}</span>
+        </div>
+      )
+    }
+  </div>
+  <div class="body">
+    <p class="year-line">{p.year}</p>
+    <h3>
+      {caseHref ? <a class="stretch" href={caseHref}>{p.title[lang]}</a> : p.title[lang]}
+    </h3>
+    {p.highlight && <p class="highlight">{p.highlight[lang]}</p>}
+    <p class="summary">{p.summary[lang]}</p>
+    <ul class="tags">
+      {p.stack.map((s) => <li>{s}</li>)}
+    </ul>
+    {
+      (caseHref || p.links.length > 0) && (
+        <div class="links">
+          {caseHref && <span class="case">{dict.labels.caseStudy} →</span>}
+          {p.links.map((l) => (
+            <a class="ext" href={l.href} target="_blank" rel="noopener">
+              {l.label[lang]} ↗
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition:
+      border-color 0.15s ease,
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+    min-width: 0;
+  }
+  .card:hover {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  .media {
+    aspect-ratio: 16 / 10;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .fallback {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-5);
+    background:
+      radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 55%),
+      repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--accent) 7%, transparent) 14px 15px),
+      var(--accent-soft);
+  }
+  .poster {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--accent);
+    overflow-wrap: anywhere;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    opacity: 0.85;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    flex: 1;
+  }
+  .year-line {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  h3 {
+    font-size: var(--step-1);
+    overflow-wrap: anywhere;
+  }
+  h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .highlight {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: var(--step--1);
+  }
+  .summary {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .links {
+    margin-top: auto;
+    padding-top: var(--space-2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+  .case {
+    color: var(--accent);
+  }
+  .ext {
+    position: relative;
+    z-index: 1;
+  }
+</style>

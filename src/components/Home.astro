@@ -1,0 +1,29 @@
+---
+import type { Lang } from '../i18n';
+import Hero from './Hero.astro';
+import Proofs from './Proofs.astro';
+import Featured from './Featured.astro';
+import ProjectGrid from './ProjectGrid.astro';
+import Services from './Services.astro';
+import Timeline from './Timeline.astro';
+import Experience from './Experience.astro';
+import Skills from './Skills.astro';
+import Certifications from './Certifications.astro';
+import Contact from './Contact.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<Hero lang={lang} />
+<Proofs lang={lang} />
+<Featured lang={lang} />
+<ProjectGrid lang={lang} />
+<Services lang={lang} />
+<Timeline lang={lang} />
+<Experience lang={lang} />
+<Skills lang={lang} />
+<Certifications lang={lang} />
+<Contact lang={lang} />

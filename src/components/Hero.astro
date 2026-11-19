@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import { t, type Lang } from '../i18n';
+import { profile } from '../data/profile';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+---
+
+<section id="inicio" class="hero" aria-labelledby="inicio-titulo">
+  <div class="container grid">
+    <div class="text">
+      <p class="eyebrow"><span class="dot" aria-hidden="true"></span>{dict.hero.eyebrow}</p>
+      <h1 id="inicio-titulo">{profile.name}</h1>
+      <p class="role">{profile.role[lang]}</p>
+      <p class="tagline">{profile.tagline[lang]}</p>
+      <div class="actions">
+        <a class="btn primary" href="#projetos">{dict.hero.ctaProjects}</a>
+        <a class="btn ghost" href="#contato">{dict.hero.ctaContact}</a>
+      </div>
+      <p class="meta">{profile.location[lang]} · {profile.availability[lang]}</p>
+    </div>
+    <div class="photo-wrap">
+      <Image
+        src={profile.photo}
+        alt={dict.hero.photoAlt}
+        width={320}
+        height={320}
+        loading="eager"
+        fetchpriority="high"
+        class="photo"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-7) var(--space-8);
+    background:
+      radial-gradient(60rem 30rem at 85% -10%, var(--accent-soft), transparent 70%),
+      var(--bg);
+  }
+  .grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  @media (min-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr auto;
+      gap: var(--space-8);
+    }
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: var(--space-1) var(--space-3);
+    border-radius: 999px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  h1 {
+    font-size: var(--step-3);
+    margin-top: var(--space-4);
+  }
+  .role {
+    font-size: var(--step-1);
+    color: var(--muted);
+    margin-top: var(--space-2);
+    font-weight: 500;
+  }
+  .tagline {
+    margin-top: var(--space-5);
+    max-width: 58ch;
+    font-size: var(--step-0);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+  .meta {
+    margin-top: var(--space-5);
+    color: var(--muted);
+    font-size: var(--step--1);
+  }
+  .photo-wrap {
+    justify-self: center;
+    order: -1;
+  }
+  @media (min-width: 860px) {
+    .photo-wrap {
+      order: 0;
+    }
+  }
+  .photo {
+    width: clamp(150px, 40vw, 300px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--card);
+    box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+  }
+</style>

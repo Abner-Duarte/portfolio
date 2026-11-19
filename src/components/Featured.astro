@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import { t, base, type Lang } from '../i18n';
+import { profile } from '../data/profile';
+import Section from './Section.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+const f = profile.featured;
+const caseHref = `${base(lang)}/${lang === 'pt' ? 'projetos' : 'projects'}/zapsync`;
+---
+
+<Section id="zapsync" title={dict.sections.featured} tone="soft">
+  <article class="card">
+    <div class="shot">
+      <Image src={f.image} alt={f.title[lang]} widths={[480, 800, 1100]} sizes="(min-width: 960px) 520px, 100vw" />
+    </div>
+    <div class="body">
+      <h3>{f.title[lang]}</h3>
+      <p class="summary">{f.summary[lang]}</p>
+      <ul class="bullets">
+        {f.bullets.map((b) => <li>{b[lang]}</li>)}
+      </ul>
+      <ul class="tags">
+        {f.stack.map((s) => <li>{s}</li>)}
+      </ul>
+      <div class="actions">
+        {
+          f.links.map((l, i) => (
+            <a class:list={['btn', i === 0 ? 'primary' : 'ghost']} href={l.href} target="_blank" rel="noopener">
+              {l.label[lang]}
+            </a>
+          ))
+        }
+        <a class="more" href={caseHref}>{dict.labels.caseStudy} →</a>
+      </div>
+    </div>
+  </article>
+</Section>
+
+<style>
+  .card {
+    display: grid;
+    gap: var(--space-6);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    box-shadow: var(--shadow);
+  }
+  @media (min-width: 960px) {
+    .card {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      padding: var(--space-6);
+      align-items: start;
+    }
+  }
+  .shot :global(img) {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    width: 100%;
+  }
+  h3 {
+    font-size: var(--step-1);
+  }
+  .summary {
+    margin-top: var(--space-3);
+    color: var(--muted);
+  }
+  .bullets {
+    margin-top: var(--space-4);
+    padding-left: 1.1rem;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .bullets li::marker {
+    color: var(--accent);
+  }
+  .tags {
+    margin-top: var(--space-5);
+  }
+  .actions {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+  }
+  .more {
+    font-weight: 600;
+    font-size: var(--step--1);
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+import { t, type Lang } from '../i18n';
+import { services } from '../data/services';
+import { projects } from '../data/projects';
+import Section from './Section.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+
+function proofName(slug: string): string {
+  return projects.find((p) => p.slug === slug)?.title[lang] ?? dict.labels.proofNames[slug] ?? slug;
+}
+function proofHref(slug: string): string {
+  if (slug === 'consumer') return '#experiencia';
+  if (slug === 'zapsync') return '#zapsync';
+  return `#projeto-${slug}`;
+}
+---
+
+<Section id="servicos" title={dict.sections.services} intro={dict.sections.servicesIntro} tone="soft">
+  <ol class="grid">
+    {
+      services.map((s, i) => (
+        <li class="item">
+          <span class="num" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <h3>{s.title[lang]}</h3>
+          <p class="text">{s.text[lang]}</p>
+          <p class="proof">
+            <span>{dict.labels.proof}:</span>{' '}
+            {s.proofSlugs.map((slug, j) => (
+              <>
+                {j > 0 && ', '}
+                <a href={proofHref(slug)}>{proofName(slug)}</a>
+              </>
+            ))}
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+  <div class="cta">
+    <a class="btn primary" href="#contato">{dict.hero.ctaContact}</a>
+  </div>
+</Section>
+
+<style>
+  .grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 720px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .num {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h3 {
+    font-size: var(--step-1);
+  }
+  .text {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .proof {
+    margin-top: auto;
+    font-size: var(--step--1);
+  }
+  .proof span {
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .cta {
+    margin-top: var(--space-6);
+  }
+</style>

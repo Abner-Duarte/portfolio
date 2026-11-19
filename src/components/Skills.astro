@@ -1,0 +1,45 @@
+---
+import { t, type Lang } from '../i18n';
+import { skills } from '../data/skills';
+import Section from './Section.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+---
+
+<Section id="stack" title={dict.sections.stack}>
+  <div class="grid">
+    {
+      skills.map((g) => (
+        <div class="group">
+          <h3>{g.group[lang]}</h3>
+          <ul class="tags">
+            {g.items[lang].map((s) => (
+              <li>{s}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: var(--space-5) var(--space-6);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 720px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  h3 {
+    font-size: var(--step-0);
+    margin-bottom: var(--space-3);
+  }
+</style>

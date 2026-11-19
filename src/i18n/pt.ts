@@ -18,6 +18,35 @@ export const pt = {
   langSwitch: 'English',
   langSwitchLabel: 'Ver em inglês',
   footer: 'Feito por Abner Duarte com Astro.',
+  hero: {
+    eyebrow: 'Aberto a vagas e projetos',
+    ctaProjects: 'Ver projetos',
+    ctaContact: 'Falar comigo',
+    photoAlt: 'Foto de Abner Evandro Duarte',
+  },
+  sections: {
+    proofs: 'Em números',
+    featured: 'Projeto em destaque',
+    projects: 'Projetos',
+    projectsIntro: 'Do mais recente ao mais antigo: produtos com IA, ferramentas internas, jogos e os projetos da faculdade.',
+    services: 'Serviços',
+    servicesIntro: 'O que eu posso construir para você, cada item com um projeto que prova.',
+    journey: 'Como cheguei aqui',
+    experience: 'Experiência',
+    stack: 'Stack',
+    certs: 'Certificações e cursos',
+    contact: 'Vamos conversar',
+    contactIntro: 'Tem uma vaga ou um projeto? O jeito mais rápido é o WhatsApp.',
+  },
+  labels: {
+    caseStudy: 'Ver estudo de caso',
+    proof: 'Prova',
+    whatsapp: 'Chamar no WhatsApp',
+    email: 'E-mail',
+    cvPt: 'Currículo em português (PDF)',
+    cvEn: 'Currículo em inglês (PDF)',
+    proofNames: { zapsync: 'ZapSync', consumer: 'Experiência na Consumer' } as Record<string, string>,
+  },
 };
 
 export type Dict = typeof pt;

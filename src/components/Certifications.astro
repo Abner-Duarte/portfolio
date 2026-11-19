@@ -1,0 +1,101 @@
+---
+import { t, type Lang } from '../i18n';
+import { certifications } from '../data/certifications';
+import Section from './Section.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+const featured = certifications.filter((c) => c.featured);
+const others = certifications.filter((c) => !c.featured);
+---
+
+<Section id="certificacoes" title={dict.sections.certs} tone="soft">
+  <div class="featured">
+    {
+      featured.map((c) => (
+        <article class="cert">
+          <p class="issuer">{c.issuer}</p>
+          <h3>{c.name[lang]}</h3>
+          {c.detail && <p class="detail">{c.detail[lang]}</p>}
+        </article>
+      ))
+    }
+  </div>
+  <ul class="others">
+    {
+      others.map((c) => (
+        <li>
+          <span class="name">{c.name[lang]}</span>
+          <span class="issuer">{c.issuer}</span>
+        </li>
+      ))
+    }
+  </ul>
+</Section>
+
+<style>
+  .featured {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 860px) {
+    .featured {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .cert {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+  }
+  .issuer {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h3 {
+    margin-top: var(--space-2);
+    font-size: var(--step-0);
+  }
+  .detail {
+    margin-top: var(--space-2);
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .others {
+    list-style: none;
+    margin-top: var(--space-5);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    border-top: 1px solid var(--border);
+  }
+  @media (min-width: 860px) {
+    .others {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--space-6);
+    }
+  }
+  .others li {
+    display: flex;
+    flex-direction: column;
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--border);
+  }
+  .name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .others .issuer {
+    color: var(--muted);
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: var(--step--1);
+  }
+</style>

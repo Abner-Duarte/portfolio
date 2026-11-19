@@ -1,9 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
 import { t } from '../../i18n';
 const dict = t('en');
 ---
 
 <Base lang="en" title={dict.siteTitle} description={dict.siteDescription} altPath="/">
-  <h1>Abner Evandro Duarte</h1>
+  <Home lang="en" />
 </Base>

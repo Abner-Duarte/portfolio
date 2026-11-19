@@ -1,0 +1,36 @@
+---
+import { t, type Lang } from '../i18n';
+import { projects } from '../data/projects';
+import Section from './Section.astro';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+---
+
+<Section id="projetos" title={dict.sections.projects} intro={dict.sections.projectsIntro}>
+  <div class="grid">
+    {projects.map((p) => <ProjectCard project={p} lang={lang} />)}
+  </div>
+</Section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
